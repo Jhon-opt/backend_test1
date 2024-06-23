@@ -4,7 +4,7 @@ const routerApi = require("./routes");
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/error.handler');
 const app = express();
 const { faker, el } = require('@faker-js/faker');
-const PORT = 3001;
+const PORT = process.env.PORT ||3001;
 
 app.use(express.json())
 
@@ -21,10 +21,10 @@ const options = {
 
 app.use(cors(options));
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.send("<p style='text-align:center;font-size:40px;color:lightblue;background-color:#000'>Mi primer servidor en Express</p>");
 });
-app.get("/nueva-ruta", (req, res) => {
+app.get("/api/nueva-ruta", (req, res) => {
     res.send('Nuevo endpoint');
   });
   routerApi(app);
